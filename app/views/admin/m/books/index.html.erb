@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>本 一覧</h1>
-<%= link_to '新規登録', new_admin_m_book_path %>
+<h1>本マスタ 一覧</h1>
+<%= link_to '新規登録', new_admin_m_book_path, class: "btn btn-mini btn-primary" %>
 
 
 <table class="table table-striped table-bordered table-hover">
@@ -18,9 +18,9 @@
       <tr>
         <td><%= m_book.name %></td>
         <td><%= m_book.isbn %></td>
-        <td><%= link_to '詳細', admin_m_book_path(m_book) %></td>
-        <td><%= link_to '更新', edit_admin_m_book_path(m_book) %></td>
-        <td><%= link_to '削除', admin_m_book_path(m_book), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '詳細', admin_m_book_path(m_book), class: "btn btn-mini btn-primary" %></td>
+        <td><%= link_to '更新', edit_admin_m_book_path(m_book), class: "btn btn-mini btn-primary" %></td>
+        <td><%= link_to '削除', admin_m_book_path(m_book), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-mini btn-primary" %></td>
       </tr>
     <% end %>
   </tbody>
