@@ -15,7 +15,7 @@
     <%= f.text_field :name %>
     <%= f.label :isbn, "ISBNコード" %>
     <%= f.text_field :isbn %>
-    <%= hidden_field_tag "purchase_request[request_user_id]", current_user.id %>
+    <%= hidden_field_tag "purchase_request[user_id]", current_user.id %>
   </div>
 
   <div class="actions">
