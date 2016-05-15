@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
   UPDATABLE_ATTRS = %i(m_book_id rental_user_id status)
   belongs_to :m_book, class_name: M::Book.name
   belongs_to :owner, class_name: User
+  belongs_to :m_branch, class_name: M::Branch.name
   has_many :borrowing_histories, dependent: :destroy
   has_many :reservations, dependent: :destroy
   has_many :receipts

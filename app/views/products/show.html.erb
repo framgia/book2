@@ -1,4 +1,8 @@
 <% history = @product.latest_borrowing_history %>
+<ol class="breadcrumb">
+  <li><%= link_to "Products", products_path %></li>
+  <li class="active">Product detail</li>
+</ol>
 <div class="row">
   <div class="col-xs-9">
     <div class="panel panel-default">
@@ -7,10 +11,12 @@
        <dl class="dl-horizontal">
           <dt>ISBN</dt>
           <dd><%= @product.m_book.isbn %></dd>
+          <dt>保管場所</dt>
+          <dd><%= @product.m_branch.name %></dd>
           <dt>Status</dt>
           <dd><%= @product.try :status %></dd>
           <dt>Borrower</dt>
-          <dd><%= history.try :borrower %></dd>
+          <dd><%= history.try(:borrower).try(:name) %></dd>
           <dt>Borroweed Data</dt>
           <dd><%= l history.try :borrowed_at %></dd>
           <dt>Returned Data</dt>
@@ -33,7 +39,7 @@
         <% @product.reservations.each do |reservation| %>
         <tr>
           <td><%= reservation.id %></td>
-          <td><%= reservation.reserved_user_id %></td>
+          <td><%= reservation.reserved_user.name %></td>
           <td><%= l reservation.created_at %></td>
         </tr>
         <% end %>
@@ -55,7 +61,7 @@
         <% @product.borrowing_histories.reverse.each do |history| %>
         <tr>
           <td><%= history.id %></td>
-          <td><%= history.borrower_id %></td>
+          <td><%= history.borrower.name %></td>
           <td><%= l history.borrowed_at %></td>
           <td><%= l history.returned_at %></td>
         </tr>
@@ -64,5 +70,3 @@
     </table>
   </div>
 </div>
-
-<%= link_to 'Back', products_path, class: "btn btn-primary" %>
