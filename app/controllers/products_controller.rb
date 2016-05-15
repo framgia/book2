@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   def index
     if params[:user_id]
       @products = Product.user_products user_id_params
+      render 'products/user_index'
     else
       @products = Product.all.includes [:m_book, :borrowing_histories, :reservations]
     end
