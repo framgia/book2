@@ -39,7 +39,7 @@ class BorrowingHistoriesController < ApplicationController
         borrower_id: reservation.reserved_user_id, borrowed_at: Time.now
       Notification.create! subject: "[Return Book Notification] #{product.name} was returned.",
         description: "Your book : #{product.name}",
-        sender_id: current_user, receiver_id: reservation.reserved_user_id
+        sender_id: @borrowing_history.borrower_id, receiver_id: reservation.reserved_user_id
       reservation.destroy!
     end
     redirect_to products_path, notice: "Product was successfully returned."
