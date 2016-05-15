@@ -12,9 +12,15 @@
   <% end %>
 
   <div class="actions">
-    <%= f.text_field :name %><br>
-    <% if @receipt.image %><%= image_tag @receipt.image_url %><% end %>
-    <%= f.file_field :image %><br>
+    <div class="field">
+      <%= f.label :product_id %>
+      <%= f.collection_select :product_id, Product.all, :id, :name %>
+    </div>
+    <div class="field">
+      <%= f.label :image %>
+      <% if @receipt.image.present? %><%= image_tag @receipt.image_url %><% end %>
+      <%= f.file_field :image %><br>
+    </div>
     <%= f.submit %>
   </div>
 <% end %>
