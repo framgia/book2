@@ -19,7 +19,7 @@
       <% history = product.latest_borrowing_history %>
       <tr>
         <td><%= product.m_book.isbn %></td>
-        <td><%= product.m_book.name %></td>
+        <td><%= link_to product.m_book.name, product_path(product) %></td>
         <td><%= product.status %></td>
         <td><%= product.reservations.count %></td>
         <td><%= history.try :borrower_id %></td>
@@ -28,7 +28,7 @@
         <% if product.status != :borrowed %>
           <td><%= link_to '借りる', product_borrowing_histories_path(product_id: product.id), method: :post, class: "btn btn-primary" %></td>
         <% else %>
-          <td><%= link_to '貸出中', product_reservations_path(product_id: product.id), method: :post, class: "btn btn-danger" %></td>
+          <td><%= link_to '予約', product_reservations_path(product_id: product.id), method: :post, class: "btn btn-danger" %></td>
         <% end %>
         <td>
           <% unless history.nil? %>

@@ -1,24 +1,68 @@
-<p id="notice"><%= notice %></p>
+<% history = @product.latest_borrowing_history %>
+<div class="row">
+  <div class="col-xs-9">
+    <div class="panel panel-default">
+      <div class="panel-heading"><%= @product.m_book.name %></div>
+      <div class="panel-body">
+       <dl class="dl-horizontal">
+          <dt>ISBN</dt>
+          <dd><%= @product.m_book.isbn %></dd>
+          <dt>Status</dt>
+          <dd><%= @product.try :status %></dd>
+          <dt>Borrower</dt>
+          <dd><%= history.try :borrower %></dd>
+          <dt>Borroweed Data</dt>
+          <dd><%= l history.try :borrowed_at %></dd>
+          <dt>Returned Data</dt>
+          <dd><%= l history.try :returned_at %></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-6">
+    <h4>Reservation Users</h4>
+    <table class="table table-condensed table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Reserved User</th>
+          <th>Reserved Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @product.reservations.each do |reservation| %>
+        <tr>
+          <td><%= reservation.id %></td>
+          <td><%= reservation.reserved_user_id %></td>
+          <td><%= l reservation.created_at %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-xs-6">
+    <h4>Borrowing History</h4>
+    <table class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Borrower</th>
+          <th>Borrowed Date</th>
+          <th>Reserved Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @product.borrowing_histories.reverse.each do |history| %>
+        <tr>
+          <td><%= history.id %></td>
+          <td><%= history.borrower_id %></td>
+          <td><%= l history.borrowed_at %></td>
+          <td><%= l history.returned_at %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<p>
-  <strong>M book:</strong>
-  <%= @product.m_book_id %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @product.status %>
-</p>
-
-<p>
-  <strong>Requested date:</strong>
-  <%= @product.requested_date %>
-</p>
-
-<p>
-  <strong>Request user:</strong>
-  <%= @product.request_user_id %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to 'Back', products_path, class: "btn btn-primary" %>
