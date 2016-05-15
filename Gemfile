@@ -18,7 +18,7 @@ gem "omniauth-github"
 gem "config"
 
 gem "capistrano-sidekiq"
-gem "capistrano", "~> 3.2.1"
+gem "capistrano", "~> 3.4.0"
 gem "capistrano-rails"
 gem "rvm1-capistrano3", require: false
 gem "capistrano-bundler"

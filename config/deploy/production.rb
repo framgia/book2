@@ -1,4 +1,3 @@
-set :production
 set :rails_env, :production
 set :whenever_roles, :whenever
 set :server, "deploy@#{ENV["SERVER"]}"
