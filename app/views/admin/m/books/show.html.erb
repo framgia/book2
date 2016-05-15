@@ -1,4 +1,4 @@
-  <h5>本 詳細</h5>
+  <h5>本マスタ 詳細</h5>
 <p id="notice"><%= notice %></p>
 <table class="table table-bordered table-hover">
   <tr>
@@ -11,5 +11,5 @@
   </tr>
 </table>
 
-<%= link_to '更新', edit_admin_m_book_path(@m_book) %> |
-<%= link_to '戻る', admin_m_books_path %>
+<%= link_to '更新', edit_admin_m_book_path(@m_book), class: "btn btn-mini btn-primary" %> |
+<%= link_to '戻る', admin_m_books_path, class: "btn btn-mini btn-primary" %>
