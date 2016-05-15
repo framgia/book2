@@ -5,6 +5,7 @@ class Product < ActiveRecord::Base
   belongs_to :owner, class_name: User
   has_many :borrowing_histories, dependent: :destroy
   has_many :reservations, dependent: :destroy
+  has_many :receipts
 
   scope :user_products, ->(user_id) {includes(:m_book, :borrowing_histories).where(owner_id: user_id)}
 
