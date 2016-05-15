@@ -1,5 +1,6 @@
 # config valid only for Capistrano 3.1
-lock '3.2.1'
+require 'rvm1/capistrano3'
+lock '3.4.1'
 
 set :application, 'book2'
 set :repo_url, 'git@github.com:framgia/book2.git'

@@ -42,7 +42,7 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
     byebug (8.2.5)
-    capistrano (3.2.1)
+    capistrano (3.4.1)
       i18n
       rake (>= 10.0.0)
       sshkit (~> 1.3)
@@ -248,7 +248,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  capistrano (~> 3.2.1)
+  capistrano (~> 3.4.0)
   capistrano-bundler
   capistrano-faster-assets
   capistrano-rails
