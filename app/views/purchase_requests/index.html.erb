@@ -17,7 +17,7 @@
         <td><%= m_book.isbn %></td>
         <td>
           <%= unless m_book.requested_by?(current_user)
-            link_to 'Request', purchase_requests_path(purchase_request: {m_book_id: m_book.id, request_user_id: current_user.id, status: "requesting"}), remote: true, method: :post, id: "request-book#{m_book.id}" 
+            link_to 'Request', purchase_requests_path(purchase_request: {m_book_id: m_book.id, user_id: current_user.id, status: "requesting"}), remote: true, method: :post, id: "request-book#{m_book.id}"
           end %>
         </td>
       </tr>

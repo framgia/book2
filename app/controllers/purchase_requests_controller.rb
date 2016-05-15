@@ -24,7 +24,7 @@ class PurchaseRequestsController < ApplicationController
       if @purchase_request.save
         format.js {}
         format.html do
-         redirect_to @purchase_request, notice: 'Purchase request was successfully created.' 
+         redirect_to @purchase_request, notice: 'Purchase request was successfully created.'
         end
       else
         format.html do
