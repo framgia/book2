@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
 
   # GET /reservations
@@ -24,7 +25,7 @@ class ReservationsController < ApplicationController
   # POST /reservations
   def create
     @reservation = Reservation.new product_id: params[:product_id],
-      reserved_user_id: 1
+      reserved_user_id: current_user.id
     @reservation.save!
     redirect_to products_path, notice: "Product was successfully reserved."
   end

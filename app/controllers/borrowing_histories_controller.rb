@@ -1,4 +1,5 @@
 class BorrowingHistoriesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_borrowing_history, only: [:show, :edit, :update, :destroy]
 
   # GET /borrowing_histories
@@ -24,7 +25,7 @@ class BorrowingHistoriesController < ApplicationController
   # POST /borrowing_histories
   def create
     @borrowing_history = BorrowingHistory.create! product_id: params[:product_id],
-      borrower_id: current_user, borrowed_at: Time.now
+      borrower_id: current_user.id, borrowed_at: Time.now
     redirect_to products_path, notice: "Product was successfully borrowed."
   end
 

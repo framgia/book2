@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20160515040109) do
 
   create_table "products", force: :cascade do |t|
     t.integer  "m_book_id",  limit: 4
+    t.integer  "m_branch_id", limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "owner_id",   limit: 4
