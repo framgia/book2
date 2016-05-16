@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book2</title>
+  <%= stylesheet_link_tag "admin", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "admin", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+    <header class="navbar navbar-fixed-top navbar-inverse navbar-fixed-top">
+      <%= link_to image_tag("logo.png"), root_path, class: 'img-rounded' %>
+      <ul class="nav navbar-nav pull-right">
+        <%= link_to user_path(current_user.id) do %>
+          <%= current_user.nickname %>
+          <%= image_tag current_user.thumbnail_image, class: "img-rounded" %>
+        <% end %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      </ul>
+    </header>
+    <div class="row">
+      <div class="col-lg-3">
+        <div class=".well sidebar-nav">
+          <ul class="nav nav-list">
+            <li><%= link_to "領収書管理", admin_receipts_path %></li>
+            <li><%= link_to "拠点管理", admin_m_branches_path %></li>
+            <li><%= link_to "本マスター管理", admin_m_books_path %></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+<%= yield %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
