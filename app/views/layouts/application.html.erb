@@ -8,17 +8,46 @@
 </head>
 <body>
     <div class="container">
-      <%= render 'layouts/header' %>
+    <header class="navbar navbar-fixed-top navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <%= link_to image_tag("logo.png"), root_path, class: 'img-rounded' %>
+        <ul class="nav navbar-nav pull-right">
+          <% if user_signed_in? %>
+          <li>
+            <a class="navbar-brand" href="https://github.com/">
+              <%= image_tag current_user.thumbnail_image, class: 'img-rounded' %>
+            </a>
+          <li>
+          <li>
+            <%= link_to current_user.show_name, user_path(current_user.id) %>
+          </li>
+          <li>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </li>
+          <% else %>
+          <li>
+            <%= link_to "ログイン", user_omniauth_authorize_path(:github) %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </header>
       <div class="row">
         <div class="col-lg-3">
-          <% if user_signed_in? %>
-            <%= render 'layouts/sidebar' %>
-          <% end %>
+          <div class=".well sidebar-nav">
+            <ul class="nav nav-list">
+              <li><%= link_to "本購入リクエスト", purchase_requests_path %></li>
+              <li><%= link_to "社内の本一覧", products_path %></li>
+              <li><%= link_to "ユーザー毎の本一覧", products_path(user_id: current_user.id) %></li>
+            </ul>
+          </div>
         </div>
         <div class="col-lg-9">
           <%= yield %>
         </div>
-      <%= render 'layouts/footer' %>
+      <footer class="footer">
+        <p class="text-muted text-right">© Framgia, Inc. All Rights Reserved.</p>
+      </footer>
     </div>
   </div>
 </body>
