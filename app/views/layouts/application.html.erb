@@ -34,6 +34,7 @@
     </header>
       <div class="row">
         <div class="col-lg-3">
+          <% if user_signed_in? %>
           <div class=".well sidebar-nav">
             <ul class="nav nav-list">
               <li><%= link_to "本購入リクエスト", purchase_requests_path %></li>
@@ -41,6 +42,7 @@
               <li><%= link_to "ユーザー毎の本一覧", products_path(user_id: current_user.id) %></li>
             </ul>
           </div>
+          <% end %>
         </div>
         <div class="col-lg-9">
           <%= yield %>
