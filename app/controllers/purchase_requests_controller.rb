@@ -1,7 +1,6 @@
 class PurchaseRequestsController < ApplicationController
   before_action :set_purchase_request, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :find_or_create_book, only: :create
 
   def index
     @m_books = ::M::Book.all
@@ -19,12 +18,13 @@ class PurchaseRequestsController < ApplicationController
   end
 
   def create
+    set_requestor
     @purchase_request = ::PurchaseRequest.new(purchase_request_params)
     respond_to do |format|
       if @purchase_request.save
         format.js {}
         format.html do
-         redirect_to @purchase_request, notice: 'Purchase request was successfully created.'
+          redirect_to @purchase_request, notice: "Purchase request was successfully created."
         end
       else
         format.html do
@@ -58,17 +58,14 @@ class PurchaseRequestsController < ApplicationController
 
   private
   def set_purchase_request
-    @purchase_request = ::PurchaseRequest.find(params[:id])
+    @purchase_request = ::PurchaseRequest.find params[:id]
   end
 
   def purchase_request_params
-    params.require(:purchase_request).permit(::PurchaseRequest::UPDATABLE_ATTRS)
+    params.require(:purchase_request).permit ::PurchaseRequest::UPDATABLE_ATTRS
   end
 
-  def find_or_create_book
-    if params[:purchase_request][:m_book_id].blank?
-      new_book = M::Book.find_or_create_by(params[:m_book].permit(::M::Book::UPDATABLE_ATTRS))
-      params[:purchase_request][:m_book_id] = new_book.id if new_book.id
-    end
+  def set_requestor
+    params[:purchase_request][:user_id] = current_user.id
   end
 end
