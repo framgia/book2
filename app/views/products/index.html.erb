@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>#</th>
+      <th>画像</th>
       <th>ISBNコード</th>
       <th>タイトル</th>
       <th>保管場所</th>
@@ -21,6 +22,7 @@
       <% history = product.latest_borrowing_history %>
       <tr>
         <td><%= product.id %></td>
+        <td><%= image_tag product.book_image_path %></td>
         <td><%= product.m_book.isbn %></td>
         <td><%= link_to product.m_book.name, product_path(product) %></td>
         <td><%= product.m_branch.name %></td>
