@@ -1,0 +1,17 @@
+= form_for @m_book, as: :purchase_request, url: purchase_requests_path do |f|
+  - if @purchase_request.errors.any?
+    #error_explanation
+      h2 = pluralize @purchase_request.errors.count, "error"
+        prohibited this book from being saved:
+      ul
+      - @purchase_request.errors.full_messages.each do |message|
+        li = message
+
+  .action
+    = f.label :name, "タイトル"
+    = f.text_field :name
+    = f.label :isbn, "ISBNコード"
+    = f.text_field :isbn
+
+  .actions
+    = f.submit
