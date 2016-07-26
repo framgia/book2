@@ -16,6 +16,7 @@ gem "execjs"
 gem "twitter-bootstrap-rails"
 gem "omniauth-github"
 gem "config"
+gem "slim-rails"
 
 gem "capistrano-sidekiq"
 gem "capistrano", "~> 3.4.0"
