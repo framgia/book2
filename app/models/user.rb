@@ -4,11 +4,13 @@ class User < ActiveRecord::Base
   has_many :purchase_requests
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
     :trackable, :validatable, :omniauthable, omniauth_providers: [:github]
+  attr_accessor :email
 
   def self.from_omniauth auth
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.name = auth.info.name
       user.nickname = auth.info.nickname
+      auth.info.email == nil ? dummy_email(auth) : user.email = auth.info.email
       user.image = auth.info.image
       user.email = auth.info.email || dummy_email(auth)
       user.github_url = auth.info.urls["GitHub"]
