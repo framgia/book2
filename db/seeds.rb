@@ -58,3 +58,6 @@ end
 yaml["products"].each do |data|
   Product.create! m_book_id: data["m_book_id"], m_branch_id: data["m_branch_id"]
 end
+
+user = User.create( name: 'Omni User', email: 'master@framgia.com', 
+            password: 'master_key', password_confirmation: 'master_key')
