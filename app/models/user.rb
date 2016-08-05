@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :purchase_requests
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
     :trackable, :validatable, :omniauthable, omniauth_providers: [:github]
+  attr_accessor :email
 
   def self.from_omniauth auth
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -41,10 +42,6 @@ class User < ActiveRecord::Base
 
   def admin?
     Settings.users.admins.include? self.nickname
-  end
-
-  def email_changed?
-    true
   end
 
   class << self

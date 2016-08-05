@@ -8,6 +8,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # ログインに成功
       flash.notice = "ログインしました!!"
       sign_in_and_redirect user
+    elsif user.email.empty?
+      user.email = "dummy@framgia.com"
+      flash.notice = "ログインしました!!"
+      sign_in_and_redirect user
     else
       # ログインに失敗し、サインイン画面に遷移
       session["devise.user_attributes"] = user.attributes
