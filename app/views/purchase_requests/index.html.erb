@@ -1,29 +1,31 @@
-<h1>Book list</h1>
+<h1>本購入リクエスト一覧</h1>
 
+<div class="request-btn">
+<%= link_to '新規リクエスト', new_purchase_request_path, class: "btn btn-primary" %></div>
 
 <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th>タイトル</th>
+      <th>#</th>
+      <th>申請日</th>
+      <th>申請者</th>
+      <th>画像</th>
       <th>ISBNコード</th>
-      <th colspan="3"></th>
+      <th>タイトル</th>
     </tr>
   </thead>
 
   <tbody style="border 1">
-    <% @m_books.each do |m_book| %>
+    <% @purchase_requests.each do |purchase_request| %>
       <tr>
-        <td><%= m_book.name %></td>
-        <td><%= m_book.isbn %></td>
-        <td>
-          <%= unless m_book.requested_by?(current_user)
-            link_to 'Request', purchase_requests_path(purchase_request: {m_book_id: m_book.id, user_id: current_user.id, status: "requesting"}), remote: true, method: :post, id: "request-book#{m_book.id}"
-          end %>
-        </td>
+        <td><%= purchase_request.id %></td>
+        <td><%= l purchase_request.created_at %></td>
+        <td><%= purchase_request.user.name %></td>
+        <td><%= link_to image_tag(purchase_request.m_book.book_image_path), "http://www.amazon.co.jp/dp/" + purchase_request.m_book.isbn, target: ["_blank"] %></td>
+        <td><%= purchase_request.m_book.isbn %></td>
+        <td><%= purchase_request.m_book.name %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
-
-<%= link_to 'Request new book', new_purchase_request_path %>

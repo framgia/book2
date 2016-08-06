@@ -32,6 +32,11 @@
         </ul>
       </div>
     </header>
+
+    <% if flash[:notice] %>
+      <p class="alert alert-info"><%= flash[:notice] %></p>
+    <% end %>
+
       <div class="row">
         <div class="col-lg-3">
           <% if user_signed_in? %>

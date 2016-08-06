@@ -1,4 +1,4 @@
-<h1>Listing Products</h1>
+<h1>社内本一覧</h1>
 
 <table class="table table-striped table-hover">
   <thead>
@@ -22,7 +22,7 @@
       <% history = product.latest_borrowing_history %>
       <tr>
         <td><%= product.id %></td>
-        <td><%= image_tag product.book_image_path %></td>
+        <td><%= image_tag product.m_book.book_image_path %></td>
         <td><%= product.m_book.isbn %></td>
         <td><%= link_to product.m_book.name, product_path(product) %></td>
         <td><%= product.m_branch.name %></td>
