@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include UserDecorator
+  DUMMY_DOMAIN = "@dummy"
 
   has_many :purchase_requests
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
@@ -10,6 +11,7 @@ class User < ActiveRecord::Base
       user.name = auth.info.name
       user.nickname = auth.info.nickname
       user.image = auth.info.image
+      user.email = auth.info.email || dummy_email(auth)
       user.github_url = auth.info.urls["GitHub"]
       user.blog_url = auth.info.urls["Blog"]
     end
@@ -39,5 +41,12 @@ class User < ActiveRecord::Base
 
   def admin?
     Settings.users.admins.include? self.nickname
+  end
+
+  class << self
+    private
+    def dummy_email auth
+      auth.info.nickname + DUMMY_DOMAIN
+    end
   end
 end
