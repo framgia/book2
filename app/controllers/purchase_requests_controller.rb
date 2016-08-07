@@ -3,10 +3,7 @@ class PurchaseRequestsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @m_books = ::M::Book.all
-  end
-
-  def show
+    @purchase_requests = PurchaseRequest.all
   end
 
   def new
@@ -22,13 +19,12 @@ class PurchaseRequestsController < ApplicationController
     @purchase_request = ::PurchaseRequest.new(purchase_request_params)
     respond_to do |format|
       if @purchase_request.save
-        format.js {}
         format.html do
-          redirect_to @purchase_request, notice: "Purchase request was successfully created."
+          redirect_to ({action: "index"}), notice: "Purchase request was successfully created."
         end
       else
         format.html do
-          @m_book = ::M::Book.new
+          @m_book = @purchase_request.m_book
           render :new
         end
         format.json { render json: @purchase_request.errors, status: :unprocessable_entity }

@@ -1,4 +1,5 @@
 class M::Book < ActiveRecord::Base
+  include M::BookDecorator
   UPDATABLE_ATTRS = [:name, :isbn]
   has_many :products
   has_many :purchase_requests
