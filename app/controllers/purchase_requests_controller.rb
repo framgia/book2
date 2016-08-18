@@ -33,12 +33,10 @@ class PurchaseRequestsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @purchase_request.update(purchase_request_params)
-        format.html { redirect_to purchase_requests_path, notice: 'Purchase request was successfully updated.' }
-      else
-        format.html { render :index }
-      end
+    if @purchase_request.update(purchase_request_params)
+      redirect_to purchase_requests_path, notice: 'Purchase request was successfully updated.'
+    else
+      render :index
     end
   end
 

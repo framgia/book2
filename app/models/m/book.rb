@@ -7,8 +7,10 @@ class M::Book < ActiveRecord::Base
   validates :name, presence: true
   validates :isbn, presence: true, uniqueness: true
 
-  scope :refer_to_m_book, -> isbn do
-    find_or_create_by isbn: isbn
+  class << self
+    def refer_to_m_book isbn
+      find_or_create_by isbn: isbn
+    end
   end
 
   def requested_by? user
