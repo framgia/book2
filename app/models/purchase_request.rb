@@ -16,6 +16,8 @@ class PurchaseRequest < ActiveRecord::Base
     where user_id: user_id, m_book_id: m_book_id
   end
 
+  scope :sort_list, ->{all.order created_at: :desc}
+
   def purchased?
     self.product.present?
   end

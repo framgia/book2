@@ -3,7 +3,7 @@ class PurchaseRequestsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @purchase_requests = PurchaseRequest.all
+    @purchase_requests = PurchaseRequest.sort_list
   end
 
   def new
