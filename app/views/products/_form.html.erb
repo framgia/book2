@@ -24,7 +24,7 @@
   <tbody>
     <tr>
       <td>
-        <%= link_to image_tag(m_book.book_image_path), "http://www.amazon.co.jp/dp/" + m_book.isbn, target: ["_blank"] %>
+        <%= link_to image_tag(m_book.book_image_path), "http://www.amazon.co.jp/dp/" + m_book.isbn10, target: ["_blank"] %>
       </td>
       <td><%= m_book.name %></td>
       <td><%= m_book.isbn%></td>

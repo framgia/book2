@@ -1,17 +1,19 @@
-<h2>Show</h2>
+<div class="content">
+  <%= image_tag @user.image %>
+  <div class="profile">
+    <%= render 'devise/registrations/user' %>
 
-<%= render 'devise/registrations/user' %>
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+    <p>
+      <strong>あなたが管理している本の一覧</strong>
+      <%= link_to 'こちら', products_path(user_id: current_user.id) %>
+    </p>
 
-<p>
-  <strong>あなたが管理している本の一覧</strong>
-  <%= link_to 'こちら', products_path(user_id: current_user.id) %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_registration_path %> |
-<%= link_to 'Top', root_path %>
+    <%= link_to 'Edit', edit_user_registration_path %> |
+    <%= link_to 'Top', root_path %>
+  </div>
+</div>

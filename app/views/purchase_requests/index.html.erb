@@ -24,7 +24,7 @@
         <td><%= purchase_request.id %></td>
         <td><%= l purchase_request.created_at %></td>
         <td><%= purchase_request.user.name %></td>
-        <td><%= link_to image_tag(purchase_request.m_book.book_image_path), "http://www.amazon.co.jp/dp/" + purchase_request.m_book.isbn, target: ["_blank"] %></td>
+        <td><%= link_to image_tag(purchase_request.m_book.book_image_path), "http://www.amazon.co.jp/dp/" + purchase_request.m_book.isbn10, target: ["_blank"] %></td>
         <td><%= purchase_request.m_book.isbn %></td>
         <td><%= purchase_request.m_book.name %></td>
         <% if purchase_request.waiting? %>

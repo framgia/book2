@@ -22,7 +22,7 @@
       <% history = product.latest_borrowing_history %>
       <tr>
         <td><%= product.id %></td>
-        <td><%= image_tag product.m_book.book_image_path %></td>
+        <td><%= link_to image_tag(product.m_book.book_image_path), "http://www.amazon.co.jp/dp/" + product.m_book.isbn10, target: ["_blank"] %></td>
         <td><%= product.m_book.isbn %></td>
         <td><%= link_to product.m_book.name, product_path(product) %></td>
         <td><%= product.m_branch.name %></td>
