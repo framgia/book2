@@ -11,7 +11,9 @@
       <th>申請者</th>
       <th>画像</th>
       <th>ISBNコード</th>
-      <th>タイトル</th>
+      <th class="col-md-2">タイトル</th>
+      <th>承認ステータス</th>
+      <% if current_user.admin? %><th colspan="2"></th><% end %>
     </tr>
   </thead>
 
@@ -24,6 +26,14 @@
         <td><%= link_to image_tag(purchase_request.m_book.book_image_path), "http://www.amazon.co.jp/dp/" + purchase_request.m_book.isbn, target: ["_blank"] %></td>
         <td><%= purchase_request.m_book.isbn %></td>
         <td><%= purchase_request.m_book.name %></td>
+        <% if purchase_request.waiting? %>
+          <td>リクエスト中</td>
+        <% elsif purchase_request.accepted? %>
+          <td>承認済み</td>
+        <% else %>
+          <td>保留</td>
+        <% end %>
+        <%= render partial: "state_form", locals: { purchase_request: purchase_request } if current_user.admin? %>
       </tr>
     <% end %>
   </tbody>

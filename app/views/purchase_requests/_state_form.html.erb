@@ -1,0 +1,6 @@
+<td>
+  <%= link_to "承認", purchase_request_path(purchase_request, purchase_request: { state: "accepted" }), method: :patch, class: "btn btn-success", disabled: purchase_request.accepted? %>
+</td>
+<td>
+  <%= link_to "保留", purchase_request_path(purchase_request, purchase_request: { state: "nonaccepted" }), method: :patch, class: "btn btn-danger", disabled: purchase_request.nonaccepted? %>
+</td>
