@@ -42,7 +42,20 @@ h1:before {
     border-top: 13px solid #d7605e;
 }
 
-.request-btn {
+.field {
     margin-bottom: 10px;
+}
+
+.request-btn {
+    margin-bottom: 5px;
     float: right;
+}
+
+.purchase-btn {
+    margin-top: 5px;
+    width: 100px;
+}
+
+.table {
+    margin-top: 15px;
 }

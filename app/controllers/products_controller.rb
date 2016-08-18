@@ -18,13 +18,17 @@ class ProductsController < ApplicationController
   def show
   end
 
-  # DELETE /products/1
-  # DELETE /products/1.json
-  def destroy
-    @product.destroy
-    respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
-      format.json { head :no_content }
+  def new
+    @m_book = M::Book.find params[:m_book_id]
+    @product = Product.new
+  end
+
+  def create
+    @product = Product.new product_params
+    if @product.save
+      redirect_to purchase_requests_path
+    else
+      render :new
     end
   end
 
@@ -36,7 +40,7 @@ class ProductsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
-    params.require(:product).permit(:m_book_id, :status, :requested_date, :request_user_id)
+    params.require(:product).permit(:purchase_date, :m_branch_id, :price, :m_book_id)
   end
 
   def user_id_params

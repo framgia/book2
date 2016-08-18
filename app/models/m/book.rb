@@ -7,14 +7,14 @@ class M::Book < ActiveRecord::Base
   validates :name, presence: true
   validates :isbn, presence: true, uniqueness: true
 
-  class << self
-    def refer_to_m_book isbn
-      find_or_create_by isbn: isbn
-    end
-  end
-
   def requested_by? user
     PurchaseRequest.by_user_book(user.id, self.id).present?
+  end
+
+  class << self
+    def create_new_book name, isbn
+      find_by(isbn: isbn) || create(name: name, isbn: isbn)
+    end
   end
 
   def isbn13

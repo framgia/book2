@@ -2,7 +2,7 @@ class PurchaseRequest < ActiveRecord::Base
   UPDATABLE_ATTRS = %i(m_book_id user_id state).concat M::Book::UPDATABLE_ATTRS
   attr_accessor :name, :isbn
 
-  enum state: { waiting: 0, accepted: 1, nonaccepted: 2 }
+  enum state: {waiting: 0, accepted: 1, nonaccepted: 2}
 
   belongs_to :m_book, class_name: M::Book.name
   belongs_to :user
@@ -17,6 +17,6 @@ class PurchaseRequest < ActiveRecord::Base
 
   private
   def fetch_book
-    self.m_book = M::Book.refer_to_m_book isbn
+    self.m_book = M::Book.create_new_book name, isbn
   end
 end
