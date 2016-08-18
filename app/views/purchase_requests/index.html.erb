@@ -13,6 +13,7 @@
       <th>ISBNコード</th>
       <th class="col-md-2">タイトル</th>
       <th>承認ステータス</th>
+      <th>購入ステータス</th>
       <% if current_user.admin? %><th colspan="3"></th><% end %>
     </tr>
   </thead>
@@ -33,10 +34,13 @@
         <% else %>
           <td>保留</td>
         <% end %>
-        <%= render partial: "state_form", locals: {purchase_request: purchase_request} if current_user.admin? %>
+        <td>
+          <%= purchase_request.purchased? ? "購入済み" : "未購入" %>
+        </td>
+          <%= render partial: "state_form", locals: {purchase_request: purchase_request} if current_user.admin? %>
         <td>
           <% if current_user.admin? && purchase_request.accepted? %>
-            <%= link_to "購入", new_product_path(m_book_id: purchase_request.m_book.id), class: "btn btn-primary" %>
+            <%= link_to "購入", new_product_path(purchase_request_id: purchase_request.id), class: "btn btn-primary", disabled: purchase_request.purchased? %>
           <% end %>
         </td>
       </tr>

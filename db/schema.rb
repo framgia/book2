@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160819072541) do
+ActiveRecord::Schema.define(version: 20160830014850) do
 
   create_table "borrowing_histories", force: :cascade do |t|
     t.integer  "borrower_id",   limit: 4
@@ -59,9 +59,11 @@ ActiveRecord::Schema.define(version: 20160819072541) do
     t.integer  "owner_id",      limit: 4
     t.integer  "price",         limit: 4
     t.date     "purchase_date"
+    t.integer  "purchase_request_id", limit: 4
   end
 
   add_index "products", ["owner_id"], name: "index_products_on_owner_id", using: :btree
+  add_index "products", ["purchase_request_id"], name: "index_products_on_purchase_request_id", using: :btree
 
   create_table "purchase_requests", force: :cascade do |t|
     t.integer  "m_book_id",  limit: 4
