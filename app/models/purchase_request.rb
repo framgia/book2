@@ -17,6 +17,7 @@ class PurchaseRequest < ActiveRecord::Base
   end
 
   scope :sort_list, ->{all.order created_at: :desc}
+  scope :accepted_requests, ->{where state: 1}
 
   def purchased?
     self.product.present?

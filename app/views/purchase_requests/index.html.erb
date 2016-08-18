@@ -3,7 +3,7 @@
 <div class="request-btn">
 <%= link_to '新規リクエスト', new_purchase_request_path, class: "btn btn-primary" %></div>
 
-<table class="table table-striped table-bordered table-hover">
+<table class="table table-striped table-bordered">
   <thead>
     <tr>
       <th>#</th>
@@ -14,7 +14,10 @@
       <th class="col-md-2">タイトル</th>
       <th>承認ステータス</th>
       <th>購入ステータス</th>
-      <% if current_user.admin? %><th colspan="3"></th><% end %>
+      <% if current_user.admin? %>
+        <th colspan=<%= accepted_requests? ? "3" : "2" %></th>
+      <% end %>
+      <th></th>
     </tr>
   </thead>
 
@@ -38,11 +41,20 @@
           <%= purchase_request.purchased? ? "購入済み" : "未購入" %>
         </td>
           <%= render partial: "state_form", locals: {purchase_request: purchase_request} if current_user.admin? %>
-        <td>
-          <% if current_user.admin? && purchase_request.accepted? %>
-            <%= link_to "購入", new_product_path(purchase_request_id: purchase_request.id), class: "btn btn-primary", disabled: purchase_request.purchased? %>
-          <% end %>
-        </td>
+        <% if accepted_requests? %>
+          <td>
+            <% if purchase_request.accepted? %>
+               <%= link_to "購入", new_product_path(purchase_request_id: purchase_request.id), class: "btn btn-primary", disabled: purchase_request.purchased? %>
+            <% end %>
+          </td>
+        <% end %>
+        <% if purchase_request.user_id == current_user.id %>
+          <td>
+            <%= link_to purchase_request_path(purchase_request), method: :delete, data: {confirm: "Are you sure?"} do %>
+              <i class="fa fa-times" aria-hidden="true"></i>
+            <% end %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
