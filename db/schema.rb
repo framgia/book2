@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160515040109) do
+ActiveRecord::Schema.define(version: 20160819072541) do
 
   create_table "borrowing_histories", force: :cascade do |t|
     t.integer  "borrower_id",   limit: 4
@@ -52,11 +52,13 @@ ActiveRecord::Schema.define(version: 20160515040109) do
   add_index "notifications", ["sender_id"], name: "index_notifications_on_sender_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.integer  "m_book_id",   limit: 4
-    t.integer  "m_branch_id", limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.integer  "owner_id",    limit: 4
+    t.integer  "m_book_id",     limit: 4
+    t.integer  "m_branch_id",   limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "owner_id",      limit: 4
+    t.integer  "price",         limit: 4
+    t.date     "purchase_date"
   end
 
   add_index "products", ["owner_id"], name: "index_products_on_owner_id", using: :btree

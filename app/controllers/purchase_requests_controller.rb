@@ -17,24 +17,17 @@ class PurchaseRequestsController < ApplicationController
   def create
     set_requestor
     @purchase_request = ::PurchaseRequest.new(purchase_request_params)
-    respond_to do |format|
-      if @purchase_request.save
-        format.html do
-          redirect_to ({action: "index"}), notice: "Purchase request was successfully created."
-        end
-      else
-        format.html do
-          @m_book = @purchase_request.m_book
-          render :new
-        end
-        format.json { render json: @purchase_request.errors, status: :unprocessable_entity }
-      end
+    if @purchase_request.save
+      redirect_to ({action: "index"}), notice: "Purchase request was successfully created."
+    else
+      @m_book = @purchase_request.m_book
+      render :new
     end
   end
 
   def update
     if @purchase_request.update(purchase_request_params)
-      redirect_to purchase_requests_path, notice: 'Purchase request was successfully updated.'
+      redirect_to purchase_requests_path, notice: "Purchase request was successfully updated."
     else
       render :index
     end
@@ -42,10 +35,7 @@ class PurchaseRequestsController < ApplicationController
 
   def destroy
     @purchase_request.destroy
-    respond_to do |format|
-      format.html { redirect_to purchase_requests_url, notice: 'Purchase request was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to purchase_requests_url, notice: "Purchase request was successfully destroyed."
   end
 
   private
