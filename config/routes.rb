@@ -21,6 +21,6 @@ Rails.application.routes.draw do
     end
   end
   resource :dashboard, only: [:show]
-  root to: "dashboards#show"
+  root to: "purchase_requests#index"
   resources :books, only: :index
 end
