@@ -42,6 +42,23 @@ h1:before {
     border-top: 13px solid #d7605e;
 }
 
+.logo {
+  position: absolute;
+  left: 90px;
+}
+
+.dropdown-toggle {
+  position: absolute;
+  margin-left: 5px;
+  margin-top: 5px;
+  height: 40px;
+  width: 80px;
+}
+
+.nav-li{
+  margin-top: 10px;
+}
+
 .field {
     margin-bottom: 10px;
 }
