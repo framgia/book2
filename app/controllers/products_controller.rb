@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @m_book = M::Book.find params[:m_book_id]
+    @purchase_request = PurchaseRequest.find params[:purchase_request_id]
     @product = Product.new
   end
 
@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
-    params.require(:product).permit(:purchase_date, :m_branch_id, :price, :m_book_id)
+    params.require(:product).permit(:purchase_date, :m_branch_id, :price, :m_book_id, :purchase_request_id)
   end
 
   def user_id_params

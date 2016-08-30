@@ -46,6 +46,19 @@ products:
   -
     m_book_id: 5
     m_branch_id: 1
+purchase_requests:
+  -
+    name: たのしいRuby 第5版
+    isbn: 4797386290
+    user_id: 1
+  -
+    name: 確かな力が身につくJavaScript「超」入門 (確かな力が身につく「超」入門シリーズ)
+    isbn: 4797383585
+    user_id: 1
+  -
+    name: HTML5&CSS3レッスンブック
+    isbn: 4883378721
+    user_id: 1
 EOF
 
 yaml = YAML.load(data)
@@ -57,4 +70,7 @@ yaml["branches"].each do |data|
 end
 yaml["products"].each do |data|
   Product.create! m_book_id: data["m_book_id"], m_branch_id: data["m_branch_id"]
+end
+yaml["purchase_requests"].each do |data|
+  PurchaseRequest.create! name: data["name"], isbn: data["isbn"], user_id: data["user_id"]
 end

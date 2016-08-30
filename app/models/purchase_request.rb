@@ -6,6 +6,7 @@ class PurchaseRequest < ActiveRecord::Base
 
   belongs_to :m_book, class_name: M::Book.name
   belongs_to :user
+  has_one :product
 
   before_validation :fetch_book, on: :create
 
@@ -13,6 +14,10 @@ class PurchaseRequest < ActiveRecord::Base
 
   scope :by_user_book, ->user_id, m_book_id do
     where user_id: user_id, m_book_id: m_book_id
+  end
+
+  def purchased?
+    self.product.present?
   end
 
   private

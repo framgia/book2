@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
   belongs_to :m_book, class_name: M::Book.name
   belongs_to :owner, class_name: User
   belongs_to :m_branch, class_name: M::Branch.name
+  belongs_to :purchase_request
   has_many :borrowing_histories, dependent: :destroy
   has_many :reservations, dependent: :destroy
   has_many :receipts

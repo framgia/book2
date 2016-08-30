@@ -1,4 +1,5 @@
 <%= form_for(@product) do |f| %>
+<% m_book = @purchase_request.m_book %>  
   <% if @product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -23,15 +24,16 @@
   <tbody>
     <tr>
       <td>
-        <%= link_to image_tag(@m_book.book_image_path), "http://www.amazon.co.jp/dp/" + @m_book.isbn, target: ["_blank"] %>
+        <%= link_to image_tag(m_book.book_image_path), "http://www.amazon.co.jp/dp/" + m_book.isbn, target: ["_blank"] %>
       </td>
-      <td><%= @m_book.name %></td>
-      <td><%= @m_book.isbn%></td>
+      <td><%= m_book.name %></td>
+      <td><%= m_book.isbn%></td>
     </tr>
   </tbody>
 </table>
 
-  <%= f.hidden_field :m_book_id, value: @m_book.id %>
+  <%= f.hidden_field :m_book_id, value: m_book.id %>
+  <%= f.hidden_field :purchase_request_id, value: @purchase_request.id %>
 
   <div class="field">
     <%= f.label "購入日" %><br>
