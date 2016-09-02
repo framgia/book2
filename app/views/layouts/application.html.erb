@@ -10,9 +10,7 @@
     <div class="container">
     <header class="navbar navbar-fixed-top navbar-inverse">
       <% if user_signed_in? %>
-      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Left Align">
-        Menu <span class="caret"></span>
-      </button>
+      <i class="fa fa-bars fa-3x dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Left Align" aria-hidden="true"></i>
       <ul class="dropdown-menu">
         <li class="nav-li"><%= link_to "本購入リクエスト", purchase_requests_path %></li>
         <li class="nav-li"><%= link_to "社内の本一覧", products_path %></li>
@@ -57,7 +55,7 @@
           <%= yield %>
           <footer class="footer">
             <p class="text-muted text-right">© Framgia, Inc. All Rights Reserved.</p>
-        </footer>
+          </footer>
         </div>
       </div>
   </div>

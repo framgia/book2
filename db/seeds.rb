@@ -49,15 +49,15 @@ products:
 purchase_requests:
   -
     name: たのしいRuby 第5版
-    isbn: 4797386290
+    isbn: "9784797386295"
     user_id: 1
   -
     name: 確かな力が身につくJavaScript「超」入門 (確かな力が身につく「超」入門シリーズ)
-    isbn: 4797383585
+    isbn: "9784797383584"
     user_id: 1
   -
     name: HTML5&CSS3レッスンブック
-    isbn: 4883378721
+    isbn: "9784883378722"
     user_id: 1
 EOF
 
