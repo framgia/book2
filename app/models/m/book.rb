@@ -15,7 +15,7 @@ class M::Book < ActiveRecord::Base
     def create_new_book name, isbn
       isbn = remove_hyphen isbn
       if valid_length? isbn
-        convert_to_isbn13 isbn
+        isbn = convert_to_isbn13 isbn
         find_or_create_book name, isbn
       else
         new name: name, isbn: isbn
